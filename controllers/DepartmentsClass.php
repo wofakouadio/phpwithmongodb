@@ -5,7 +5,7 @@
         // database
         use DatabaseClass;
         // csrf 
-        use csrfToken;
+        // use csrfToken;
         // UUID Generator
         use IdGenerator;
 
@@ -18,19 +18,18 @@
         protected $status;
         protected $updated_at;
         protected $deleted_at;
-        private $table = "`departments`";
         protected $response = [];
 
         public function NewDepartment($name, $description = ""){
-            $this->id = IdGenerator::NewID();
-            $this->name = ucfirst($name);
+            $this->id = $this->NewID();
+            $this->name = $name;
             $this->description = $description;
 
             // initiate db connection
             $connection = $this->OpenConnection();
 
             // check if department already exists
-            $sqlCheck = "SELECT `id`, `name` FROM ".$this->table." WHERE `id` = :id LIMIT 1";
+            $sqlCheck = "SELECT `id`, `name` FROM `departments` WHERE `id` = :id LIMIT 1";
             $stmtCheck = $connection->prepare($sqlCheck);
             $stmtCheck->bindValue(":id", $this->id, PDO::PARAM_STR);
             $stmtCheck->execute();
@@ -41,11 +40,12 @@
                     'msg' => 'The department already exists'
                 ];
             }else{
+                
                 try {
-                    $sqlIns = "INSERT INTO " . $this->table . " (`id`, `name`, `description`) VALUES(:id, :name, :description)";
+                    $sqlIns = "INSERT INTO `departments` (`id`, `name`, `description`) VALUES(:id, :name, :description)";
                     $stmtIns = $connection->prepare($sqlIns);
                     $stmtIns->bindValue(":id", $this->id, PDO::PARAM_STMT);
-                    $stmtIns->bindValue(":name", $name, PDO::PARAM_STMT);
+                    $stmtIns->bindValue(":name", ucfirst($name), PDO::PARAM_STMT);
                     $stmtIns->bindValue(":description", $description, PDO::PARAM_STMT);
                     
                     $stmtIns->execute();
@@ -55,14 +55,14 @@
                         'msg' => 'The department has been created successfully'
                     ];
 
-                } catch (\Throwable $th) {
+                } catch (\Exception $th) {
                     $this->response = [
                         'status' => 201,
                         'msg' => 'Something went wrong. Error : ' . $th->getMessage()
                     ];
                 }
             }
-            $connection = $this->CloseConnection();
             return json_encode($this->response);
+            $connection = $this->CloseConnection();
         }
     }
