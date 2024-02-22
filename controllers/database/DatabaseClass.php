@@ -1,5 +1,7 @@
 <?php
 
+// require "../../constants/db_constants.php";
+
 trait DatabaseClass{
     private $username = USERNAME;
     private $password = PASSWORD;
@@ -10,7 +12,7 @@ trait DatabaseClass{
         try {
             $this->db_connection = new PDO($this->dsn, $this->username, $this->password);
             $this->db_connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $this->db_connection->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+            $this->db_connection->setAttribute(PDO::ATTR_EMULATE_PREPARES, true);
             // return [
             //     'status' => 200,
             //     'msg' => 'connection established successfully'
