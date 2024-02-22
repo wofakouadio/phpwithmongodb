@@ -3,7 +3,7 @@
     // it is based on UUID Generation function in PHP
     trait IdGenerator{
 
-        public static function NewID($data = null){
+        public function NewID($data = null){
             // Generate 16 bytes (128 bits) of random data or use the data passed into the function.
             $data = $data ?? random_bytes(16);
             assert(strlen($data) == 16);
