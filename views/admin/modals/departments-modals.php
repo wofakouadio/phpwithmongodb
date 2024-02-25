@@ -85,6 +85,15 @@
                         <input type="hidden" name="department-id">
                         <input type="hidden" name="_token" value="<?php echo $_SESSION['token']; ?>">
                     </div>
+                    <div class="col-xl-12 mb-4">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="1" name="soft-delete">
+                            <label class="form-check-label">
+                                Check me out if you want to delete it permanently. 
+                            </label>
+                            <small class="text-danger">This action is irreversible</small>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
