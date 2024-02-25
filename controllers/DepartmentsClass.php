@@ -108,10 +108,11 @@
         }
 
         // method to update department
-        public function UpdateDepartment($id, $name, $description){
+        public function UpdateDepartment($id, $name, $description, $status){
             $this->id = $id;
             $this->name = $name;
             $this->description = $description;
+            $this->status = $status;
             $this->updated_at = date('Y-m-d H:i:s');
 
             // initiate db connection
@@ -119,11 +120,12 @@
 
             // update department based on id
             try {
-                $sqlUpd = "UPDATE `departments` SET `name` = :name , `description` = :description, `updated_at` = :updated_at WHERE `id` = :id";
+                $sqlUpd = "UPDATE `departments` SET `name` = :name , `description` = :description, `status` = :status, `updated_at` = :updated_at WHERE `id` = :id";
                 $stmtUpd = $connection->prepare($sqlUpd);
                 $stmtUpd->bindValue(":id", $id, PDO::PARAM_STMT);
                 $stmtUpd->bindValue(":name",$name, PDO::PARAM_STMT);
                 $stmtUpd->bindValue(":description", $description, PDO::PARAM_STMT);
+                $stmtUpd->bindValue(":status", $status, PDO::PARAM_INT);
                 $stmtUpd->bindValue(":updated_at", $this->updated_at, PDO::PARAM_STMT);
                 
                 $stmtUpd->execute();
