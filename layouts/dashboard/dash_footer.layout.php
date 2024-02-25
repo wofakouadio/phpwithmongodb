@@ -21,6 +21,9 @@
 
 <script src="<?php echo BASE_URL . '/assets/vendor/owl-carousel/owl.carousel.js'?>"></script>
 
+<!-- sweetalert -->
+<script src="<?php echo BASE_URL . '/assets/sweetalert2/sweetalert2.all.min.js'?>"></script>
+
 <!-- Datatable -->
 <script src="<?php echo BASE_URL . '/assets/vendor/datatables/js/jquery.dataTables.min.js'?>"></script>
 <script src="<?php echo BASE_URL . '/assets/js/plugins-init/datatables.init.js'?>"></script>
