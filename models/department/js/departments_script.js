@@ -81,7 +81,7 @@ $(document).ready(()=>{
             cache: false,
             success: (Response) =>{
                 let response = JSON.parse(Response)
-                console.log(response)
+                
                 if(response.status === 400){
                     $(".edit-department-modal").modal("hide");
                     Swal.fire({
@@ -115,5 +115,62 @@ $(document).ready(()=>{
                 }
             }
         })
+    })
+
+    // update department 
+    $("#edit-department-form").on("submit", (e)=>{
+        e.preventDefault()
+        let formData = $("#edit-department-form").serialize()
+        $.ajax({
+            url:'../../models/department/server/update-department.php',
+            method:'POST',
+            data: formData,
+            cache: false,
+            success: (Response) =>{
+                let response = JSON.parse(Response)
+                if(response.status === 400){
+                    $(".edit-department-modal").modal("hide");
+                    Swal.fire({
+                        title: 'Notification',
+                        html: response.msg,
+                        icon: 'error',
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                        confirmButtonText: 'Close',
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            RefreshPage()
+                        }
+                    })
+                }
+                else if(response.status === 201){
+                    Swal.fire({
+                        title: 'Notification',
+                        html: response.msg,
+                        icon: 'warning',
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                        confirmButtonText: 'Close',
+                    })
+                }
+                else{
+                    Swal.fire({
+                        title: 'Notification',
+                        html: response.msg,
+                        icon: 'success',
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                        confirmButtonText: 'Close',
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            $(".edit-department-modal").modal("hide");
+                            $("#edit-department-form").trigger("reset");
+                            $("#DepartmentsDataTables").DataTable().draw()
+                        }
+                    })
+                }
+            }
+        })
+        
     })
 })
