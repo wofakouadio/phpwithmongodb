@@ -26,7 +26,6 @@
     
             }else{
                 require "../../../includes/init.php";
-                require_once '../../../includes/IdGenerator.php';
                 require_once '../../../controllers/DepartmentsClass.php';
         
                 $DepartmentObject = new DepartmentsClass();
