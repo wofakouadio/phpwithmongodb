@@ -52,6 +52,13 @@
                         <label  class="form-label font-w600">Description</label>
                         <textarea class="form-control solid" rows="5" aria-label="With textarea" name="department-description"></textarea>
                     </div>
+                    <div class="col-xl-12 mb-4">
+                        <label  class="form-label font-w600">Status</label>
+                        <select class="form-control form-control-lg wide mb-3" name="department-status">
+                            <option value=1>ACTIVE</option>
+                            <option value=0>DISABLED</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
