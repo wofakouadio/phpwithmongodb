@@ -25,6 +25,9 @@
 	<!-- All StyleSheet -->
 	<link href= "<?php echo BASE_URL . '/assets/vendor/bootstrap-select/dist/css/bootstrap-select.min.css'?>" rel="stylesheet">
 	<link href= "<?php echo BASE_URL . '/assets/vendor/owl-carousel/owl.carousel.css'?>" rel="stylesheet">
+
+	<!-- sweetalert -->
+	<link href= "<?php echo BASE_URL . '/assets/sweetalert2/sweetalert2.min.css'?>" rel="stylesheet">
 	
 	<!-- Globlal CSS -->
     <link href= "<?php echo BASE_URL . '/assets/css/style.css'?>" rel="stylesheet">
