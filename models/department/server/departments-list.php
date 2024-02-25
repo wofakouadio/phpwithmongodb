@@ -89,8 +89,9 @@
 
     // join Query
     $joinQuery = 'FROM `departments`';
-    // $extraWhere = '`deleted_at` = NULL';
+    // Where String
+    $extraWhere = "`deleted_at` IS NULL";
 
     echo json_encode(
-        SSP::simple($_GET, $sqlParams, $table, $primary_key, $columns, $joinQuery)
+        SSP::simple($_GET, $sqlParams, $table, $primary_key, $columns, $joinQuery, $extraWhere)
     );
