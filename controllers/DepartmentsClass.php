@@ -144,4 +144,63 @@
             return json_encode($this->response);
             $connection = $this->CloseConnection();
         }
+
+        // method to soft delete department data
+        public function SoftDeleteDepartmentData($id){
+            $this->id = $id;
+            $this->deleted_at = date('Y-m-d H:i:s');
+
+            // initiate db connection
+            $connection = $this->OpenConnection();
+
+            try {
+                $sqlUpd = "UPDATE `departments` SET `deleted_at` = :deleted_at WHERE `id` = :id";
+                $stmtUpd = $connection->prepare($sqlUpd);
+                $stmtUpd->bindValue(":id", $id, PDO::PARAM_STMT);
+                $stmtUpd->bindValue(":deleted_at", $this->deleted_at, PDO::PARAM_STMT);
+                
+                $stmtUpd->execute();
+
+                $this->response = [
+                    'status' => 200,
+                    'msg' => 'The department has been deleted successfully'
+                ];
+
+            } catch (\Exception $th) {
+                $this->response = [
+                    'status' => 201,
+                    'msg' => 'Something went wrong. Error : ' . $th->getMessage()
+                ];
+            }
+            return json_encode($this->response);
+            $connection = $this->CloseConnection();
+        }
+
+        public function DeleteDepartmentData($id){
+            $this->id = $id;
+
+            // initiate db connection
+            $connection = $this->OpenConnection();
+
+            try {
+                $sqlUpd = "DELETE FROM `departments` WHERE `id` = :id";
+                $stmtUpd = $connection->prepare($sqlUpd);
+                $stmtUpd->bindValue(":id", $id, PDO::PARAM_STMT);
+                
+                $stmtUpd->execute();
+
+                $this->response = [
+                    'status' => 200,
+                    'msg' => 'The department has been deleted successfully'
+                ];
+
+            } catch (\Exception $th) {
+                $this->response = [
+                    'status' => 201,
+                    'msg' => 'Something went wrong. Error : ' . $th->getMessage()
+                ];
+            }
+            return json_encode($this->response);
+            $connection = $this->CloseConnection();
+        }
     }
