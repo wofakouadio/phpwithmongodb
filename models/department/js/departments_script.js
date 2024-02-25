@@ -69,7 +69,7 @@ $(document).ready(()=>{
         
     })
 
-    // get department info
+    // show edit department modal to get department info
     $(".edit-department-modal").on("show.bs.modal", (e)=>{
         let str = $(e.relatedTarget);
         let id = str.data("id");
@@ -165,6 +165,109 @@ $(document).ready(()=>{
                         if (result.isConfirmed) {
                             $(".edit-department-modal").modal("hide");
                             $("#edit-department-form").trigger("reset");
+                            $("#DepartmentsDataTables").DataTable().draw()
+                        }
+                    })
+                }
+            }
+        })
+        
+    })
+
+    // show delete department modal to get department info
+    $(".delete-department-modal").on("show.bs.modal", (e)=>{
+        let str = $(e.relatedTarget);
+        let id = str.data("id");
+        let modal = $(".delete-department-modal")
+        $.ajax({
+            url:'../../models/department/server/department-data.php',
+            method:'POST',
+            data: {id:id},
+            cache: false,
+            success: (Response) =>{
+                let response = JSON.parse(Response)
+                
+                if(response.status === 400){
+                    $(".edit-department-modal").modal("hide");
+                    Swal.fire({
+                        title: 'Notification',
+                        html: response.msg,
+                        icon: 'error',
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                        confirmButtonText: 'Close',
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            RefreshPage()
+                        }
+                    })
+                }
+                else if(response.status === 201){
+                    Swal.fire({
+                        title: 'Notification',
+                        html: response.msg,
+                        icon: 'warning',
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                        confirmButtonText: 'Close',
+                    })
+                }
+                else{
+                    modal.find("input[name=department-id]").val(response.data.id)
+                    modal.find("#department-notice").html("Are you sure of deleting " + response.data.name + " department ?")
+                }
+            }
+        })
+    })
+
+    // delete department 
+    $("#delete-department-form").on("submit", (e)=>{
+        e.preventDefault()
+        let formData = $("#delete-department-form").serialize()
+        $.ajax({
+            url:'../../models/department/server/delete-department.php',
+            method:'POST',
+            data: formData,
+            cache: false,
+            success: (Response) =>{
+                let response = JSON.parse(Response)
+                if(response.status === 400){
+                    $(".delete-department-modal").modal("hide");
+                    Swal.fire({
+                        title: 'Notification',
+                        html: response.msg,
+                        icon: 'error',
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                        confirmButtonText: 'Close',
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            RefreshPage()
+                        }
+                    })
+                }
+                else if(response.status === 201){
+                    Swal.fire({
+                        title: 'Notification',
+                        html: response.msg,
+                        icon: 'warning',
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                        confirmButtonText: 'Close',
+                    })
+                }
+                else{
+                    Swal.fire({
+                        title: 'Notification',
+                        html: response.msg,
+                        icon: 'success',
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                        confirmButtonText: 'Close',
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            $(".delete-department-modal").modal("hide");
+                            $("#delete-department-form").trigger("reset");
                             $("#DepartmentsDataTables").DataTable().draw()
                         }
                     })
