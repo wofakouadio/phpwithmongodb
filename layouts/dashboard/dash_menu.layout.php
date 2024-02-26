@@ -24,6 +24,12 @@
                 </a>
             </li>
             <li>
+                <a href="<?php echo BASE_URL . '/views/admin/subjects'?>">
+                    <i class="flaticon-381-book"></i>
+                    <span class="nav-text">Subjects</span>
+                </a>
+            </li>
+            <li>
                 <a class="has-arrow " href="javascript:void()" aria-expanded="false">
                     <i class="flaticon-381-user-4"></i>
                     <span class="nav-text">Users</span>
