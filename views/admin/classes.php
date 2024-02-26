@@ -95,7 +95,7 @@
         <!--**********************************
             Footer start
         ***********************************-->
-          <?php require_once BASE_URL."/layouts/dashboard/dash_version_control.layout.php"; ?>
+        <?php require_once BASE_URL."/layouts/dashboard/dash_version_control.layout.php"; ?>
         <!--**********************************
             Footer end
         ***********************************-->
@@ -104,12 +104,12 @@
     <!--**********************************
         Main wrapper end
     ***********************************-->
-	 <!-- Modal -->
+    <!-- Modal -->
     <?php require_once BASE_URL."/views/admin/modals/classes-modals.php"; ?>
 	
 <?php require_once BASE_URL."/layouts/dashboard/dash_footer.layout.php"; ?>
 
-<!-- classes scripts -->
-<!-- <script src="<?php echo BASE_URL.'/models/department/js/classes_script.js'; ?>" ></script> -->
-<!-- department datatables -->
-<!-- <script src="<?php echo BASE_URL.'/models/department/js/classes_datatables.js'; ?>" ></script> -->
+<!-- class scripts -->
+<script src="<?php echo BASE_URL.'/models/class/js/classes_script.js'; ?>" ></script>
+<!-- class datatables -->
+<script src="<?php echo BASE_URL.'/models/class/js/classes_datatables.js'; ?>" ></script>
