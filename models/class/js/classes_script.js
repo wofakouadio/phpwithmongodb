@@ -69,13 +69,13 @@ $(document).ready(()=>{
         
     })
 
-    // show edit department modal to get department info
-    $(".edit-department-modal").on("show.bs.modal", (e)=>{
+    // show edit class modal to get class info
+    $(".edit-class-modal").on("show.bs.modal", (e)=>{
         let str = $(e.relatedTarget);
         let id = str.data("id");
-        let modal = $(".edit-department-modal")
+        let modal = $(".edit-class-modal")
         $.ajax({
-            url:'../../models/department/server/department-data.php',
+            url:'../../models/class/server/class-data.php',
             method:'POST',
             data: {id:id},
             cache: false,
@@ -83,7 +83,7 @@ $(document).ready(()=>{
                 let response = JSON.parse(Response)
                 
                 if(response.status === 400){
-                    $(".edit-department-modal").modal("hide");
+                    $(".edit-class-modal").modal("hide");
                     Swal.fire({
                         title: 'Notification',
                         html: response.msg,
@@ -108,28 +108,27 @@ $(document).ready(()=>{
                     })
                 }
                 else{
-                    modal.find("input[name=department-id]").val(response.data.id)
-                    modal.find("input[name=department-name]").val(response.data.name)
-                    modal.find("textarea[name=department-description]").val(response.data.description)
-                    modal.find("select[name=department-status]").val(response.data.status)
+                    modal.find("input[name=class-id]").val(response.data.id)
+                    modal.find("input[name=class-name]").val(response.data.name)
+                    modal.find("select[name=class-status]").val(response.data.status)
                 }
             }
         })
     })
 
-    // update department 
-    $("#edit-department-form").on("submit", (e)=>{
+    // update class 
+    $("#edit-class-form").on("submit", (e)=>{
         e.preventDefault()
-        let formData = $("#edit-department-form").serialize()
+        let formData = $("#edit-class-form").serialize()
         $.ajax({
-            url:'../../models/department/server/update-department.php',
+            url:'../../models/class/server/update-class.php',
             method:'POST',
             data: formData,
             cache: false,
             success: (Response) =>{
                 let response = JSON.parse(Response)
                 if(response.status === 400){
-                    $(".edit-department-modal").modal("hide");
+                    $(".edit-class-modal").modal("hide");
                     Swal.fire({
                         title: 'Notification',
                         html: response.msg,
@@ -163,9 +162,9 @@ $(document).ready(()=>{
                         confirmButtonText: 'Close',
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            $(".edit-department-modal").modal("hide");
-                            $("#edit-department-form").trigger("reset");
-                            $("#DepartmentsDataTables").DataTable().draw()
+                            $(".edit-class-modal").modal("hide");
+                            $("#edit-class-form").trigger("reset");
+                            $("#ClassesDataTables").DataTable().draw()
                         }
                     })
                 }
@@ -174,13 +173,13 @@ $(document).ready(()=>{
         
     })
 
-    // show delete department modal to get department info
-    $(".delete-department-modal").on("show.bs.modal", (e)=>{
+    // show delete class modal to get class info
+    $(".delete-class-modal").on("show.bs.modal", (e)=>{
         let str = $(e.relatedTarget);
         let id = str.data("id");
-        let modal = $(".delete-department-modal")
+        let modal = $(".delete-class-modal")
         $.ajax({
-            url:'../../models/department/server/department-data.php',
+            url:'../../models/class/server/class-data.php',
             method:'POST',
             data: {id:id},
             cache: false,
@@ -188,7 +187,7 @@ $(document).ready(()=>{
                 let response = JSON.parse(Response)
                 
                 if(response.status === 400){
-                    $(".edit-department-modal").modal("hide");
+                    $(".edit-class-modal").modal("hide");
                     Swal.fire({
                         title: 'Notification',
                         html: response.msg,
@@ -213,26 +212,26 @@ $(document).ready(()=>{
                     })
                 }
                 else{
-                    modal.find("input[name=department-id]").val(response.data.id)
-                    modal.find("#department-notice").html("Are you sure of deleting " + response.data.name + " department ?")
+                    modal.find("input[name=class-id]").val(response.data.id)
+                    modal.find("#class-notice").html("Are you sure of deleting " + response.data.name + " class ?")
                 }
             }
         })
     })
 
-    // delete department 
-    $("#delete-department-form").on("submit", (e)=>{
+    // delete class 
+    $("#delete-class-form").on("submit", (e)=>{
         e.preventDefault()
-        let formData = $("#delete-department-form").serialize()
+        let formData = $("#delete-class-form").serialize()
         $.ajax({
-            url:'../../models/department/server/delete-department.php',
+            url:'../../models/class/server/delete-class.php',
             method:'POST',
             data: formData,
             cache: false,
             success: (Response) =>{
                 let response = JSON.parse(Response)
                 if(response.status === 400){
-                    $(".delete-department-modal").modal("hide");
+                    $(".delete-class-modal").modal("hide");
                     Swal.fire({
                         title: 'Notification',
                         html: response.msg,
@@ -266,9 +265,9 @@ $(document).ready(()=>{
                         confirmButtonText: 'Close',
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            $(".delete-department-modal").modal("hide");
-                            $("#delete-department-form").trigger("reset");
-                            $("#DepartmentsDataTables").DataTable().draw()
+                            $(".delete-class-modal").modal("hide");
+                            $("#delete-class-form").trigger("reset");
+                            $("#ClassesDataTables").DataTable().draw()
                         }
                     })
                 }
