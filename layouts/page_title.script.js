@@ -30,5 +30,11 @@ $(document).ready(()=>{
         $("#breadcrumb-header").html("Classes")
         $("#breadcrumb-title").html("ListView")
     }
+    else if(page_title == "subjects"){
+        $("#page_title").html("Subjects")
+        $("#dash_page_name").html("Subjects")
+        $("#breadcrumb-header").html("Subjects")
+        $("#breadcrumb-title").html("ListView")
+    }
     
 })
