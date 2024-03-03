@@ -64,10 +64,11 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table id="ClassesDataTables" class="display" style="min-width: 845px">
+                            <table id="SubjectsDataTables" class="display" style="min-width: 845px">
                                 <thead>
                                     <tr>
                                         <th>Name</th>
+                                        <th>Code</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
@@ -76,6 +77,7 @@
                                 <tfoot>
                                     <tr>
                                         <th>Name</th>
+                                        <th>Code</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
