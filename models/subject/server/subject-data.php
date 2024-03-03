@@ -4,26 +4,34 @@
 
     require_once "../../../includes/TokenSession.php";
 
-    if(isset($_POST["id"]) && isset($_SESSION["tokenexpire"])){
+    if($_SERVER["REQUEST_METHOD"] === "POST"){
 
-        $class_id = filter_input(INPUT_POST, "id", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        if(isset(
+            $_POST["id"],
+            $_SESSION["tokenexpire"]
+            )
+        ){
 
-        if(time() > $_SESSION["tokenexpire"]){
-            session_destroy();
-            $response = [
-                'status' => 400,
-                'msg' => "Token has expired. Hot reload to refresh the session"
-            ];
-        }else{
-            require "../../../includes/init.php";
-            require_once '../../../includes/IdGenerator.php';
-            require_once '../../../controllers/ClassesClass.php';
+            $subject_id = filter_input(INPUT_POST, "id", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     
-            $ClassObject = new ClassesClass();
+            if(time() > $_SESSION["tokenexpire"]){
+                session_destroy();
+                $response = [
+                    'status' => 400,
+                    'msg' => "Token has expired. Hot reload to refresh the session"
+                ];
+            }else{
+                require "../../../includes/init.php";
+                require_once '../../../controllers/SubjectsClass.php';
+        
+                $SubjectObject = new SubjectClass();
+        
+                $SubjectData = $SubjectObject->SubjectData($subject_id);
+        
+                $response = json_decode($SubjectData);
+            }
     
-            $ClassData = $ClassObject->ClassData($class_id);
     
-            $response = json_decode($ClassData);
         }
 
         echo json_encode($response);
