@@ -1,6 +1,6 @@
 $(document).ready(()=>{
     // view departments in table with id "DepartmentsDataTables"
-    $("#ClassesDataTables").DataTable({
+    $("#SubjectsDataTables").DataTable({
         language: {
 			paginate: {
                 next: '<i class="fa fa-angle-double-right" aria-hidden="true"></i>',
@@ -12,12 +12,12 @@ $(document).ready(()=>{
             infoEmpty: "No records available",
             infoFiltered: ""
 		},
-        // processing: true,
-        // serverSide: true,
-        // ajax:{
-        //     url:"../../models/class/server/classes-list.php",
-        //     method: "GET"
-        // },
+        processing: true,
+        serverSide: true,
+        ajax:{
+            url:"../../models/subject/server/subjects-list.php",
+            method: "GET"
+        },
         searching: true,
         paging: true,
         lengthChange: true,
