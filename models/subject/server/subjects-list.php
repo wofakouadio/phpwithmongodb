@@ -12,7 +12,7 @@
     ];
 
     // table
-    $table = 'classes';
+    $table = 'subjects';
 
     // PK
     $primary_key = "id";
@@ -25,8 +25,13 @@
             'field' => 'name'
         ],
         [
-            'db' => '`status`', 
+            'db' => '`code`', 
             'dt' => 1, 
+            'field' => 'code'
+        ],
+        [
+            'db' => '`status`', 
+            'dt' => 2, 
             'formatter' => function($d, $row){
                 if($d === 1)
                     return '
@@ -46,7 +51,7 @@
         ],
         [
             'db' => '`id`', 
-            'dt' => 2,
+            'dt' => 3,
             'formatter' => function($d, $row){
                 return '
                     <div class="dropdown ms-auto text-center">
@@ -61,8 +66,8 @@
                             </svg>
                         </div>
                         <div class="dropdown-menu dropdown-menu-center" style="">
-                            <a class="dropdown-item" data-bs-toggle="modal" data-bs-target=".edit-class-modal" data-id="'.$d.'">Edit</a>
-                            <a class="dropdown-item" data-bs-toggle="modal" data-bs-target=".delete-class-modal" data-id="'.$d.'">Delete</a>
+                            <a class="dropdown-item" data-bs-toggle="modal" data-bs-target=".edit-subject-modal" data-id="'.$d.'">Edit</a>
+                            <a class="dropdown-item" data-bs-toggle="modal" data-bs-target=".delete-subject-modal" data-id="'.$d.'">Delete</a>
                         </div>
                     </div>
                 ';
@@ -75,7 +80,7 @@
     require "../../../models/ssp.class.php";
 
     // join Query
-    $joinQuery = 'FROM `classes`';
+    $joinQuery = 'FROM `subjects`';
     // Where String
     $extraWhere = "`deleted_at` IS NULL";
 
