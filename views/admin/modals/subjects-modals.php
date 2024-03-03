@@ -16,10 +16,14 @@
                         <label  class="form-label font-w600">Name<span class="text-danger scale5 ms-2">*</span></label>
                         <input type="hidden" name="_token" value="<?php echo $_SESSION['token']; ?>">
                         <input type="text" class="form-control solid" placeholder="Name" aria-label="name" name="subject-name">
-                    </div>                    
+                    </div>  
+                    <div class="col-xl-12 mb-4">
+                        <label  class="form-label font-w600">Code<span class="text-danger scale5 ms-2">*</span></label>
+                        <input type="number" class="form-control solid" placeholder="Code" aria-label="code" name="subject-code">
+                    </div>                   
                     <div class="col-xl-12 mb-4">
                         <label  class="form-label font-w600">Description</label>
-                        <textarea class="form-control solid" rows="5" aria-label="With textarea" name="subject-description"></textarea>
+                        <textarea class="form-control solid" rows="5" aria-label="With textarea" name="subject-description" placeholder="Description"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -47,6 +51,10 @@
                         <input type="hidden" name="subject-id">
                         <input type="hidden" name="_token" value="<?php echo $_SESSION['token']; ?>">
                         <input type="text" class="form-control solid" placeholder="Name" aria-label="name" name="subject-name">
+                    </div>
+                    <div class="col-xl-12 mb-4">
+                        <label  class="form-label font-w600">Code<span class="text-danger scale5 ms-2">*</span></label>
+                        <input type="number" class="form-control solid" placeholder="Code" aria-label="code" name="subject-code" readonly>
                     </div>
                     <div class="col-xl-12 mb-4">
                         <label  class="form-label font-w600">Description</label>
