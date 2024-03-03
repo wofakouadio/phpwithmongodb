@@ -12,19 +12,19 @@ $(document).ready(()=>{
         window.location.reload()
     }
 
-    // create new class
-    $("#new-class-form").on("submit", (e)=>{
+    // create new subject
+    $("#new-subject-form").on("submit", (e)=>{
         e.preventDefault()
-        let formData = $("#new-class-form").serialize()
+        let formData = $("#new-subject-form").serialize()
         $.ajax({
-            url:'../../models/class/server/new-class.php',
+            url:'../../models/subject/server/new-subject.php',
             method:'POST',
             data: formData,
             cache: false,
             success: (Response) =>{
                 let response = JSON.parse(Response)
                 if(response.status === 400){
-                    $(".new-class-modal").modal("hide");
+                    $(".new-subject-modal").modal("hide");
                     Swal.fire({
                         title: 'Notification',
                         html: response.msg,
@@ -58,9 +58,9 @@ $(document).ready(()=>{
                         confirmButtonText: 'Close',
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            $(".new-class-modal").modal("hide");
-                            $("#new-class-form").trigger("reset");
-                            $("#ClassesDataTables").DataTable().draw()
+                            $(".new-subject-modal").modal("hide");
+                            $("#new-subject-form").trigger("reset");
+                            $("#SubjectsDataTables").DataTable().draw()
                         }
                     })
                 }
@@ -69,13 +69,13 @@ $(document).ready(()=>{
         
     })
 
-    // show edit class modal to get class info
-    $(".edit-class-modal").on("show.bs.modal", (e)=>{
+    // show edit subject modal to get subject info
+    $(".edit-subject-modal").on("show.bs.modal", (e)=>{
         let str = $(e.relatedTarget);
         let id = str.data("id");
-        let modal = $(".edit-class-modal")
+        let modal = $(".edit-subject-modal")
         $.ajax({
-            url:'../../models/class/server/class-data.php',
+            url:'../../models/subject/server/subject-data.php',
             method:'POST',
             data: {id:id},
             cache: false,
@@ -83,7 +83,7 @@ $(document).ready(()=>{
                 let response = JSON.parse(Response)
                 
                 if(response.status === 400){
-                    $(".edit-class-modal").modal("hide");
+                    $(".edit-subject-modal").modal("hide");
                     Swal.fire({
                         title: 'Notification',
                         html: response.msg,
@@ -108,27 +108,29 @@ $(document).ready(()=>{
                     })
                 }
                 else{
-                    modal.find("input[name=class-id]").val(response.data.id)
-                    modal.find("input[name=class-name]").val(response.data.name)
-                    modal.find("select[name=class-status]").val(response.data.status)
+                    modal.find("input[name=subject-id]").val(response.data.id)
+                    modal.find("input[name=subject-code]").val(response.data.code)
+                    modal.find("input[name=subject-name]").val(response.data.name)
+                    modal.find("textarea[name=subject-description]").val(response.data.description)
+                    modal.find("select[name=subject-status]").val(response.data.status)
                 }
             }
         })
     })
 
-    // update class 
-    $("#edit-class-form").on("submit", (e)=>{
+    // update subject 
+    $("#edit-subject-form").on("submit", (e)=>{
         e.preventDefault()
-        let formData = $("#edit-class-form").serialize()
+        let formData = $("#edit-subject-form").serialize()
         $.ajax({
-            url:'../../models/class/server/update-class.php',
+            url:'../../models/subject/server/update-subject.php',
             method:'POST',
             data: formData,
             cache: false,
             success: (Response) =>{
                 let response = JSON.parse(Response)
                 if(response.status === 400){
-                    $(".edit-class-modal").modal("hide");
+                    $(".edit-subject-modal").modal("hide");
                     Swal.fire({
                         title: 'Notification',
                         html: response.msg,
@@ -162,9 +164,9 @@ $(document).ready(()=>{
                         confirmButtonText: 'Close',
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            $(".edit-class-modal").modal("hide");
-                            $("#edit-class-form").trigger("reset");
-                            $("#ClassesDataTables").DataTable().draw()
+                            $(".edit-subject-modal").modal("hide");
+                            $("#edit-subject-form").trigger("reset");
+                            $("#SubjectsDataTables").DataTable().draw()
                         }
                     })
                 }
@@ -173,13 +175,13 @@ $(document).ready(()=>{
         
     })
 
-    // show delete class modal to get class info
-    $(".delete-class-modal").on("show.bs.modal", (e)=>{
+    // show delete subject modal to get subject info
+    $(".delete-subject-modal").on("show.bs.modal", (e)=>{
         let str = $(e.relatedTarget);
         let id = str.data("id");
-        let modal = $(".delete-class-modal")
+        let modal = $(".delete-subject-modal")
         $.ajax({
-            url:'../../models/class/server/class-data.php',
+            url:'../../models/subject/server/subject-data.php',
             method:'POST',
             data: {id:id},
             cache: false,
@@ -187,7 +189,7 @@ $(document).ready(()=>{
                 let response = JSON.parse(Response)
                 
                 if(response.status === 400){
-                    $(".edit-class-modal").modal("hide");
+                    $(".edit-subject-modal").modal("hide");
                     Swal.fire({
                         title: 'Notification',
                         html: response.msg,
@@ -212,26 +214,26 @@ $(document).ready(()=>{
                     })
                 }
                 else{
-                    modal.find("input[name=class-id]").val(response.data.id)
-                    modal.find("#class-notice").html("Are you sure of deleting " + response.data.name + " class ?")
+                    modal.find("input[name=subject-id]").val(response.data.id)
+                    modal.find("#subject-notice").html("Are you sure of deleting " + response.data.name + " subject ?")
                 }
             }
         })
     })
 
-    // delete class 
-    $("#delete-class-form").on("submit", (e)=>{
+    // delete subject 
+    $("#delete-subject-form").on("submit", (e)=>{
         e.preventDefault()
-        let formData = $("#delete-class-form").serialize()
+        let formData = $("#delete-subject-form").serialize()
         $.ajax({
-            url:'../../models/class/server/delete-class.php',
+            url:'../../models/subject/server/delete-subject.php',
             method:'POST',
             data: formData,
             cache: false,
             success: (Response) =>{
                 let response = JSON.parse(Response)
                 if(response.status === 400){
-                    $(".delete-class-modal").modal("hide");
+                    $(".delete-subject-modal").modal("hide");
                     Swal.fire({
                         title: 'Notification',
                         html: response.msg,
@@ -265,9 +267,9 @@ $(document).ready(()=>{
                         confirmButtonText: 'Close',
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            $(".delete-class-modal").modal("hide");
-                            $("#delete-class-form").trigger("reset");
-                            $("#ClassesDataTables").DataTable().draw()
+                            $(".delete-subject-modal").modal("hide");
+                            $("#delete-subject-form").trigger("reset");
+                            $("#SubjectsDataTables").DataTable().draw()
                         }
                     })
                 }
