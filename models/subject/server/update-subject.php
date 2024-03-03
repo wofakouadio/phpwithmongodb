@@ -4,37 +4,58 @@
 
     require_once "../../../includes/TokenSession.php";
 
-    if(isset($_POST["class-id"]) && isset($_POST["class-name"]) && isset($_POST["class-status"]) && isset($_POST["_token"]) && isset($_SESSION["token"])){
+    if($_SERVER["REQUEST_METHOD"] === "POST"){
 
-        $class_id = filter_input(INPUT_POST, "class-id", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        $class_name = filter_input(INPUT_POST, "class-name", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        $class_status = filter_input(INPUT_POST, "class-status", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        $formToken = filter_input(INPUT_POST, "_token", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        if(isset(
+            $_POST["subject-id"],
+            $_POST["subject-name"],
+            $_POST["subject-status"],
+            $_POST["_token"],
+            $_SESSION["token"],
+            $_POST["subject-description"]
+            )
+        ){
 
-        if(time() > $_SESSION["tokenexpire"]){
-            session_destroy();
-            $response = [
-                'status' => 400,
-                'msg' => "Token has expired. Hot reload to refresh the session"
-            ];
-        }else{
-            if($_SESSION["token"] ==! $formToken){
+            $subject_id = filter_input(INPUT_POST, "subject-id", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $subject_name = filter_input(INPUT_POST, "subject-name", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $subject_status = filter_input(INPUT_POST, "subject-status", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $subject_description = filter_input(INPUT_POST, "subject-description", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $formToken = filter_input(INPUT_POST, "_token", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    
+            if(time() > $_SESSION["tokenexpire"]){
                 session_destroy();
                 $response = [
                     'status' => 400,
-                    'msg' => "Token mismatch. Reload to regenerate new token"
+                    'msg' => "Token has expired. Hot reload to refresh the session"
                 ];
-    
             }else{
-                require "../../../includes/init.php";
-                require_once '../../../controllers/ClassesClass.php';
+                if($_SESSION["token"] ==! $formToken){
+                    session_destroy();
+                    $response = [
+                        'status' => 400,
+                        'msg' => "Token mismatch. Reload to regenerate new token"
+                    ];
         
-                $ClassObject = new ClassesClass();
-        
-                $UpdateClass = $ClassObject->UpdateClass($class_id, strtoupper($class_name), $class_status);
-        
-                $response = json_decode($UpdateClass);
+                }else{
+                    require "../../../includes/init.php";
+                    require_once '../../../controllers/SubjectsClass.php';
+            
+                    $SubjectObject = new SubjectClass();
+            
+                    $UpdateSubject = $SubjectObject->UpdateSubject($subject_id, strtoupper($subject_name), $subject_description, $subject_status);
+            
+                    $response = json_decode($UpdateSubject);
+                }
             }
+    
+        }else{
+
+            session_destroy();
+            $response = [
+                'status' => 400,
+                'msg' => "Wrong request method"
+            ];
+
         }
 
         echo json_encode($response);
