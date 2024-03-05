@@ -36,5 +36,11 @@ $(document).ready(()=>{
         $("#breadcrumb-header").html("Subjects")
         $("#breadcrumb-title").html("ListView")
     }
+    else if(page_title == "teachers"){
+        $("#page_title").html("Teachers")
+        $("#dash_page_name").html("Teachers")
+        $("#breadcrumb-header").html("Teachers")
+        $("#breadcrumb-title").html("ListView")
+    }
     
 })
