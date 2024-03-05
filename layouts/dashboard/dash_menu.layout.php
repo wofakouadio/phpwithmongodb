@@ -30,6 +30,12 @@
                 </a>
             </li>
             <li>
+                <a href="<?php echo BASE_URL . '/views/admin/teachers'?>">
+                    <i class="flaticon-381-user-9"></i>
+                    <span class="nav-text">Teachers</span>
+                </a>
+            </li>
+            <li>
                 <a class="has-arrow " href="javascript:void()" aria-expanded="false">
                     <i class="flaticon-381-user-4"></i>
                     <span class="nav-text">Users</span>
