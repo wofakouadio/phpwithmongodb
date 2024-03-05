@@ -21,6 +21,15 @@
 
 <script src="<?php echo BASE_URL . '/assets/vendor/owl-carousel/owl.carousel.js'?>"></script>
 
+<!-- Material color picker -->
+<script src="<?php echo BASE_URL . '/assets/vendor/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js'?>"></script>
+<script src="<?php echo BASE_URL . '/assets/vendor/bootstrap-datepicker-master/js/bootstrap-datepicker.min.js'?>"></script>
+
+<!-- pickdate -->
+<script src="<?php echo BASE_URL . '/assets/vendor/pickadate/picker.js'?>"></script>
+<script src="<?php echo BASE_URL . '/assets/vendor/pickadate/picker.time.js'?>"></script>
+<script src="<?php echo BASE_URL . '/assets/vendor/pickadate/picker.date.js'?>"></script>
+
 <!-- sweetalert -->
 <script src="<?php echo BASE_URL . '/assets/sweetalert2/sweetalert2.all.min.js'?>"></script>
 
