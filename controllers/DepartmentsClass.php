@@ -19,6 +19,7 @@
         protected $updated_at;
         protected $deleted_at;
         protected $response = [];
+        protected $html_output = "";
 
         // method to store new department
         public function NewDepartment($name, $description = ""){
@@ -201,6 +202,35 @@
                 ];
             }
             return json_encode($this->response);
+            $connection = $this->CloseConnection();
+        }
+
+        public function DepartmentsInDropdown(){
+            // initiate db connection
+            $connection = $this->OpenConnection();
+
+            // check if department already exists
+            $sqlFetch = "SELECT `id`, `name` FROM `departments` WHERE `status` = :status ORDER BY `name` ASC";
+            $stmtFetch = $connection->prepare($sqlFetch);
+            $stmtFetch->bindValue(":status", 1, PDO::PARAM_INT);
+            $stmtFetch->execute();
+
+            if($stmtFetch->rowCount() == 0){
+                $this->response = [
+                    'status' => 201,
+                    'msg' => 'No department available'
+                ];
+            }else{
+
+                $this->html_output = "<option value='0'>Choose</option>";
+
+                while($DepartmentData = $stmtFetch->fetch(PDO::FETCH_OBJ)){
+                    $this->html_output .= "<option value=".$DepartmentData->id.">".$DepartmentData->name."</option>";
+                }
+                
+                
+            }
+            return $this->html_output;
             $connection = $this->CloseConnection();
         }
     }
