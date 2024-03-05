@@ -21,6 +21,14 @@
 
 	<!-- Datatable -->
     <link href="<?php echo BASE_URL . '/assets/vendor/datatables/css/jquery.dataTables.min.css'?>" rel="stylesheet">
+
+	<!-- Material color picker -->
+    <link href="<?php echo BASE_URL . '/assets/vendor/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css'?>" rel="stylesheet">
+
+	<!-- Pick date -->
+    <link rel="stylesheet" href="<?php echo BASE_URL . '/assets/vendor/pickadate/themes/default.css'?>">
+    <link rel="stylesheet" href="<?php echo BASE_URL . '/assets/vendor/pickadate/themes/default.date.css'?>">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	
 	<!-- All StyleSheet -->
 	<link href= "<?php echo BASE_URL . '/assets/vendor/bootstrap-select/dist/css/bootstrap-select.min.css'?>" rel="stylesheet">
