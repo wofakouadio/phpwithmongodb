@@ -67,8 +67,12 @@
                             <table id="TeachersDataTables" class="display" style="min-width: 845px">
                                 <thead>
                                     <tr>
+                                        <th>Profile</th>
                                         <th>Name</th>
-                                        <th>Code</th>
+                                        <th>Gender</th>
+                                        <th>Email</th>
+                                        <th>Contact</th>
+                                        <th>Department</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
@@ -76,8 +80,12 @@
                                 <tbody></tbody>
                                 <tfoot>
                                     <tr>
+                                        <th>Profile</th>
                                         <th>Name</th>
-                                        <th>Code</th>
+                                        <th>Gender</th>
+                                        <th>Email</th>
+                                        <th>Contact</th>
+                                        <th>Department</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
@@ -111,7 +119,9 @@
 	
 <?php require_once BASE_URL."/layouts/dashboard/dash_footer.layout.php"; ?>
 
-<!-- subject scripts -->
-<script src="<?php echo BASE_URL.'/models/subject/js/teachers_script.js'; ?>" ></script>
-<!-- subject datatables -->
-<script src="<?php echo BASE_URL.'/models/subject/js/teachers_datatables.js'; ?>" ></script>
+<!-- teacher scripts -->
+<script src="<?php echo BASE_URL.'/models/teacher/js/teachers_script.js'; ?>" ></script>
+<!-- teacher datatables -->
+<script src="<?php echo BASE_URL.'/models/teacher/js/teachers_datatables.js'; ?>" ></script>
+<!-- extra scripts -->
+<script src="<?php echo BASE_URL.'/models/functions/js/get_department_in_dropdown_script.js'; ?>" ></script>
