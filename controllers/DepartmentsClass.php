@@ -215,12 +215,12 @@
             $stmtFetch->bindValue(":status", 1, PDO::PARAM_INT);
             $stmtFetch->execute();
 
-            if($stmtFetch->rowCount() == 0){
-                $this->response = [
-                    'status' => 201,
-                    'msg' => 'No department available'
-                ];
-            }else{
+            // if($stmtFetch->rowCount() == 0){
+            //     $this->response = [
+            //         'status' => 201,
+            //         'msg' => 'No department available'
+            //     ];
+            // }else{
 
                 $this->html_output = "<option value='0'>Choose</option>";
 
@@ -229,7 +229,7 @@
                 }
                 
                 
-            }
+            // }
             return $this->html_output;
             $connection = $this->CloseConnection();
         }
