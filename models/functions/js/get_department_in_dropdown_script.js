@@ -5,7 +5,8 @@ $(document).ready(()=>{
         $.ajax({
             url:'../../models/functions/server/get_department_in_dropdown.php',
             success: (Response)=>{
-                $("#new-teacher-form select[name=teacher-department]").html(Response);
+                $("#teacher-department").html(Response);
+                // $("#new-teacher-form select[name=teacher-department]").html(Response);
             }
         })
     }
