@@ -12,13 +12,18 @@
     ];
 
     // table
-    $table = 'subjects';
+    $table = 'teachers';
 
     // PK
     $primary_key = "id";
 
     // get all columns to display
     $columns = [
+        [
+            'db' => 'profile',
+            'dt' => 0,
+            'formatter' => function($d, $row){}
+        ],
         [
             'db' => '`name`', 
             'dt' => 0, 
