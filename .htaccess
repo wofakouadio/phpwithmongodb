@@ -1,5 +1,4 @@
 #redirection when page not found
-# ErrorDocument 404 https://kingdomissues.com/404.html
 #ErrorDocument 404 /404/
 
 
